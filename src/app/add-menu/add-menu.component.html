@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Formulaire ajout menu</h1>
+    <form [formGroup]="menuForm" (ngSubmit)="add()">
+        <!-- Champ ID -->
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="number" class="form-control" id="id" formControlName="id" >
+        </div>
+
+        <!-- Champ Title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="title" formControlName="title" >
+            <small class="text-danger" *ngIf="menuForm.controls.title.hasError('required')">Le champ title est obligatoire</small>
+        </div>
+
+        <!-- Champ Image -->
+        <div class="mb-3">
+            <label for="image" class="form-label">Image (URI)</label>
+            <input type="text" class="form-control" id="image" formControlName="image">
+        </div>
+
+        <!-- Champ Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="4" ></textarea>
+            <small class="text-danger" *ngIf="menuForm.controls.description.hasError('required')">Le champ description est obligatoire</small>
+            <small class="text-danger" *ngIf="menuForm.controls.description.hasError('minlength')">Le longeur minimal est 10</small>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button type="submit" class="btn btn-primary" [disabled]="menuForm.invalid">Envoyer</button>
+    </form>
+</div>
